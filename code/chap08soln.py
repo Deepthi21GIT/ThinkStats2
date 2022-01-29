@@ -53,8 +53,8 @@ a plot of standard error versus $n$.
 
 1) With sample size 10:
 
-standard error 0.896717911545
-confidence interval (1.2901330772324622, 3.8692334892427911)
+standard error 0.8213174702285929
+confidence interval (1.25550014631529, 3.704192909895469)
 
 2) As sample size increases, standard error and the width of
 the CI decrease:

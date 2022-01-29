@@ -15,7 +15,6 @@ import first
 import thinkplot
 import thinkstats2
 
-
 """This file contains a solution to an exercise in Think Stats:
 
 Using data from the NSFG, make a scatter plot of birth weight
@@ -38,6 +37,7 @@ in the range of mother's age from 15 to 25.  After that, the effect
 is weaker.
 
 """
+
 
 def ScatterPlot(ages, weights, alpha=1.0):
     """Make a scatter plot and save it.
@@ -91,10 +91,9 @@ def BinnedPercentiles(df):
                    ylabel='birth weight (lbs)')
 
 
-
 def main(script):
     thinkstats2.RandomSeed(17)
-    
+
     live, firsts, others = first.MakeFrames()
     live = live.dropna(subset=['agepreg', 'totalwgt_lb'])
     BinnedPercentiles(live)
@@ -102,11 +101,11 @@ def main(script):
     ages = live.agepreg
     weights = live.totalwgt_lb
     print('thinkstats2 Corr', thinkstats2.Corr(ages, weights))
-    print('thinkstats2 SpearmanCorr', 
+    print('thinkstats2 SpearmanCorr',
           thinkstats2.SpearmanCorr(ages, weights))
 
     ScatterPlot(ages, weights, alpha=0.1)
-    thinkplot.Save(root='chap07scatter1', 
+    thinkplot.Save(root='chap07scatter1',
                    legend=False,
                    formats=['jpg'])
 
