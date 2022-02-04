@@ -36,14 +36,14 @@ test2: difference in mean birth weight
 test3: correlation of mother's age and birth weight
 test4: chi-square test of pregnancy length
 
-n       test1   test2   test2   test4
+  n       test1   test2   test2   test4
 9148	0.16	0.00	0.00	0.00
-4574	0.10	0.01	0.00	0.00
-2287	0.25	0.06	0.00	0.00
-1143	0.24	0.03	0.39	0.03
-571	0.81	0.00	0.04	0.04
-285	0.57	0.41	0.48	0.83
-142	0.45	0.08	0.60	0.04
+4574	0.03	0.02	0.00	0.00
+2287	0.04	0.07	0.00	0.00
+1143	0.70	0.04	0.80	0.07
+571	    0.53	0.00	0.00	0.35
+285     0.96	0.84	0.35	0.53
+142	    0.87	0.49	0.20	0.06
 
 Conclusion: As expected, tests that are positive with large sample
 sizes become negative as we take away data.  But the pattern is
@@ -161,7 +161,6 @@ def RunTests(live, iters=1000):
     p4 = ht.PValue(iters=iters)
 
     print('%d\t%0.2f\t%0.2f\t%0.2f\t%0.2f' % (n, p1, p2, p3, p4))
-
 
 def main():
     thinkstats2.RandomSeed(18)
