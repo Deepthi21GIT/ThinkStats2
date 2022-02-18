@@ -58,38 +58,6 @@ def PlotQuadraticModel(daily, name):
                    ylabel='price per gram ($)')
 
 
-def PlotEwmaPredictions(daily, name):
-    """
-    """
-
-    # use EWMA to estimate slopes
-    filled = timeseries.FillMissing(daily)
-    filled['slope'] = pandas.ewma(filled.ppg.diff(), span=180)
-    filled[-1:]
-
-    # extract the last inter and slope
-    start = filled.index[-1]
-    inter = filled.ewma[-1]
-    slope = filled.slope[-1]
-
-    # reindex the DataFrame, adding a year to the end
-    dates = pandas.date_range(filled.index.min(), 
-                              filled.index.max() + np.timedelta64(365, 'D'))
-    predicted = filled.reindex(dates)
-
-    # generate predicted values and add them to the end
-    predicted['date'] = predicted.index
-    one_day = np.timedelta64(1, 'D')
-    predicted['days'] = (predicted.date - start) / one_day
-    predict = inter + slope * predicted.days
-    predicted.ewma.fillna(predict, inplace=True)
-
-    # plot the actual values and predictions
-    thinkplot.Scatter(daily.ppg, alpha=0.1, label=name)
-    thinkplot.Plot(predicted.ewma)
-    thinkplot.Save()
-
-
 class SerialCorrelationTest(thinkstats2.HypothesisTest):
     """Tests serial correlations by permutation."""
 
@@ -147,8 +115,6 @@ def main(name):
 
     PlotQuadraticModel(daily, name)
     TestSerialCorr(daily)
-    PlotEwmaPredictions(daily, name)
-
 
 if __name__ == '__main__':
     import sys
